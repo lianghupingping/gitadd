@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			p{font-size: 65px;font-weight: 550;color: black;margin-left: 50px;margin-top: 100px;}
+			.Textbox {width: 80%; height: 80px;margin-left: 50px;margin-top: 100px;font-size: 30px;color: white;}
+			.Textboxs {width: 60%; height: 80px;margin-left: 50px;margin-top: 60px;font-size: 30px;color: white;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<p>欢迎登录</p>
+		</div>
+		<div>
+		<input type="text" name="phonenumber" class="Textbox" value="" placeholder="请输入手机号" maxlength="11" name="" size="50" style=" border-bottom: black 1px solid;
+		    border-top-style: none;
+		    border-right-style: none;
+		    border-left-style: none;
+		    background-color: transparent;
+		" />	
+		</div>
+		<div>
+		<input type="text" name="verify" class="Textboxs" value="" placeholder="请输入短信验证码" name="" size="50" style=" border-bottom: black 1px solid;
+		    border-top-style: none;
+		    border-right-style: none;
+		    border-left-style: none;
+		    background-color: transparent;
+		" />
+		<input  type="button" class="verify_code" value="获取验证码" style="width: 200px;height: 50px;font-size: 30px;"></input>
+				</div>
+				
+		<div>
+			<input type="button" name="login" value="登录" style="width: 70%;height: 80px;margin-top: 100px;margin: 150px;font-size: 40px;" />
+		</div>
+		<script type="text/javascript">
+		
+			//验证
+			function validate(){
+			//正则表达式，十一位数字的电话号码
+			   var phoneReg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/;
+			//如果手机号码输入为空，则再输入框后插入错误信息
+			if($('[name=phonenumber]').val==''){
+			       $('[name=phonenumber]').after(errMsg('手机号码不能为空！'));
+			　　　　return false;
+			　　}
+			//验证输入的电话号码是否是11位数字
+			if(!phoneReg.test($('[name=phonenumber]').val())){
+			$('[name=phonenumber]').after(errMsg('请输入正确的手机号码！'));
+			　　　　return false；
+			}
+			
+			//验证码不为空验证
+			if($('[name=verify]').val==''){
+			       $('[name=verify]').after(errMsg('验证码不能为空！'));
+			　　　　return false;
+			}
+			$('.error').remove();
+			return true;}
+			//点击发送验证码按钮，进行倒计时
+			$('.verify_code').on('',function(){
+			  if(!this.b){
+			    setTimer();
+			    this.b=true;
+			}
+			})
+			 }       
+		</script>	
+		  
+	</body>
+</html>
